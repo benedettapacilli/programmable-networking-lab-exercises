@@ -58,7 +58,7 @@ curl -X POST -d '{"dpid": 1, "role": "slave"}' http://localhost:8081/v1.0/conf/s
 where:
 - ```"dpid": 1```: This identifies the switch with DPID 1 (sw1) in your topology
 - ```"role": "slave"```: This sets the role of the controller to SLAVE for the specified switch
-- ```http://localhost:8081/v1.0/conf/switches/0000000000000001/role```: This is the endpoint of the REST API for the Ryu controller on port 8081
+- ```http://localhost:8081/v1.0/conf/switches/0000000000000001/role```: This is the endpoint of the REST API for the Ryu controller on port 8081.
 
 We can verify the role change through the following command:
 ``` bash
@@ -154,7 +154,7 @@ If we ping from h1 to h2, the ping should still be successful because the flow r
 ```bash
 mininet> h1 ping h3
 ```
-When performing ping from h1 to h3, the ping should be successful as the controllers are managing the switches correctly.<br/>
+When performing ping from h1 to h3, the ping is insuccessful as C1 is only master to s2 and not s1.
 
 ## Step 7:	C1 requires to	be	MASTER	for	sw1
 ```bash
@@ -165,3 +165,4 @@ curl -X POST -d '{"dpid": 1, "role": "master"}' http://localhost:8081/v1.0/conf/
 ```bash
 mininet> h1 ping h3
 ```
+Now that C1 is the master controller for sw1, the ping from h1 to h3 should be successful.
