@@ -1,10 +1,13 @@
 ## Step 0: start controllers and topology
 
 ```bash
-ryu-manager /usr/local/lib/python3.10/dist-packages/ryu/app/simple_switch_13_patched.py --ofp-tcp-listen-port 6633 --wsapi-port 8080 &
+ryu-manager /usr/local/lib/python3.10/dist-packages/ryu/app/simple_switch_13.py --ofp-tcp-listen-port 6633 --wsapi-port 8080 &
 ```
+ofp-tcp-listen-port is the port for the OpenFlow protocol. The OpenFlow protocol is used to communicate between the controller and the switches. The controller listens on port 6633 for OpenFlow messages.
+
+wsapi-port is the port for the REST API of the controller. The REST API is used to interact with the controller through HTTP requests. The controller listens on port 8080 for REST API requests.
 ```bash
-ryu-manager /usr/local/lib/python3.10/dist-packages/ryu/app/simple_switch_13_patched.py --ofp-tcp-listen-port 6653 --wsapi-port 8081 &
+ryu-manager /usr/local/lib/python3.10/dist-packages/ryu/app/simple_switch_13.py --ofp-tcp-listen-port 6653 --wsapi-port 8081 &
 ```
 
 ``` bash
