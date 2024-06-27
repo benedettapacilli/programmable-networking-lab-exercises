@@ -46,7 +46,7 @@ class SimpleSwitch13(app_manager.RyuApp): # app_manager.RyuApp is the base class
         # install table-miss flow entry to forward unmatched packets to the controller
         match = parser.OFPMatch()
         actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
-                                          ofproto.OFPCML_NO_BUFFER)]
+                                          ofproto.OFPCML_NO_BUFFER)] # This action sends the packet to the controller without buffering it.
         self.add_flow(datapath, 0, match, actions) # Adds a flow entry to the switch.
 
     def add_flow(self, datapath, priority, match, actions, buffer_id=None):
@@ -68,7 +68,7 @@ class SimpleSwitch13(app_manager.RyuApp): # app_manager.RyuApp is the base class
         if buffer_id:
             mod = parser.OFPFlowMod(datapath=datapath, buffer_id=buffer_id,
                                     priority=priority, match=match,
-                                    instructions=inst)
+                                    instructions=inst) # OFPFlowMod is used to add a flow entry to the switch.
         else:
             mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
                                     match=match, instructions=inst)
